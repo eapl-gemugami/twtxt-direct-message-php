@@ -1,2 +1,1 @@
-# twtxt-direct-message-php
-This is a (WIP draft) reference implementation of Direct Message Extension
+This is a (WIP draft) reference implementation of [twtxt.dev | Direct Message Extension](https://twtxt.dev/exts/direct-message.html) in PHP.
