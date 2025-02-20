@@ -35,7 +35,7 @@ echo -n "Hi Alice, let's meet tomorrow at 5 PM!" | openssl enc -e -a -A -aes-256
 Note: I'd add `-md sha256` and `-e` to make it explicit that we are encrypting, and using sha256.
 Don't rely on default values! It's confusing
 
-### Force a salt to be used, for testing purposes
+### DEBUG: Force a salt to be used
 
 Note: The `-S` option is no compatible with the workflow as it won't insert the required prefix "Salted__"
 https://stackoverflow.com/questions/72149327/openssl-3-0-2-with-custom-salt-doesnt-start-with-salted
@@ -45,7 +45,7 @@ See the note "Please note that OpenSSL 3.0..." in documentation for this command
 echo -n "Hi Alice, let's meet tomorrow at 5 PM!" | openssl enc -e -aes-256-cbc -pbkdf2 -iter 100000 -out message.enc -pass file:shared_key.bin -salt -S 3B5A93C02570AEB2 -md sha256
 ```
 
-### Print the key and IV
+### DEBUG: Print the key and IV
 
 ```
 openssl enc -e -P -a -A -aes-256-cbc -pbkdf2 -iter 100000 -out message.enc.b64 -pass file:shared_key.bin -md sha256
@@ -65,7 +65,7 @@ iv=1500A66CDA8D6E0B0B57CF1257203EB8 (16 bytes)
 base64 -w 0 < message.enc > message.enc.b64
 ```
 
-Check message.enc.b64 for the encrypted message: U2FsdGVkX1+mVLsw62BUyjcjnAVtU/EP04gS9GuTsD8xW66BH3V+kb828lMswrDntCtKgauLDZEDRCmpAo3lcQ==
+Check message.enc.b64 for the encrypted message: `U2FsdGVkX1+mVLsw62BUyjcjnAVtU/EP04gS9GuTsD8xW66BH3V+kb828lMswrDntCtKgauLDZEDRCmpAo3lcQ==`
 
 This will be the string of the direct message.
 
